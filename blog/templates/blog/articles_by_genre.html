@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block title %} - {{genre}} {% endblock title %}
+{% load bleach_tags %}
+{% block content %}
+<br>
+<div class="container">
+{% for article in articles %}
+<article class="blog-post">
+        <h2 class="blog-post-title fs-3">{{article.title}}</h2>
+        <p class="blog-post-meta">{{article.date_posted}} by <a class="text-dark" href="{% url 'profile' article.author.id %}">{{article.author}}</a></p>
+        {% if article.image %}
+        <img src="{{article.image.url}}" class="bd-placeholder-img thumbnail img-fluid"  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"  alt="">
+        {% endif %}
+        <p class="fst-italic fs-6">{{article.excerpt}}</p>
+        <p class="fs-6">{{article.content|truncatewords:50|bleach}}</p>
+        <a href="{% url 'show-article' article.slug %}">Continue reading</a>
+        </article>
+{% endfor %}
+</div>
+{% endblock content %}

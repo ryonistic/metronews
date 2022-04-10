@@ -1,0 +1,67 @@
+{% extends 'blog/base.html' %}
+{% block title %} - {{article.genre}} ({{article.date_posted| date:'d-m-Y'}}) {% endblock title %}
+{% load bleach_tags %}
+{% block content %}
+<br>
+<div class="container">
+<article class="blog-post">
+        <h2 class="blog-post-title fs-1">{{article.title}}</h2>
+        <p class="fst-italic fs-6">{{article.excerpt}}</p>
+        <p class="blog-post-meta">{{article.date_posted}} by <a class="text-dark" href="{% url 'profile' article.author.id %}">{{article.author}}</a></p>
+        {% if article.image %}
+        <img src="{{article.image.url}}" class="img-fluid" alt="">
+        {% endif %}
+        <br><br>
+        <p>{{article.content|bleach }}</p>
+      </article>
+      </div>
+      <br>
+      <div class="container">
+        <h5>About the author: </h5>
+  {% if article.author.profile.image %}
+        <img src="{{article.author.profile.image.url}}" class="img-fluid" style="max-height: 300px; max-width: 300px;" alt="">
+        {% endif %}
+  <div class="d-flex" style="align-items: baseline;">
+<p class="fs-2 p-2">{{article.author.first_name}} {{article.author.last_name}}</p>
+<p class="fs-6 p-2">@{{article.author.username}}</p>
+</div>
+<div class="container">
+{% if article.author.is_writer and article.author.is_reporter %}
+<p>Writer and Reporter at MetroNews</p>
+{% endif %}
+{% if article.author.is_reporter and not article.author.is_writer %}
+<p>Reporter at MetroNews</p>
+{% endif %}
+{% if not article.author.is_reporter and article.author.is_writer %}
+<p>Writer at MetroNews</p>
+{% endif %}
+</div>
+</div>
+      <br>
+      
+      <div class="container">
+        {% if comments %}
+              <h2>Comments:</h2>
+              <br>
+              {% endif %}
+        {% if user.is_authenticated and user.is_member %}
+        <form method=POST>
+                {% csrf_token %}
+              {{form.as_p}}
+              <button type="submit" class="btn btn-secondary">Submit</button>
+        </form>
+        {% endif %}
+        <br>
+        {% for comment in comments %}
+        <div class="card">
+        <div class="card-body">
+        <p class="blog-post-meta">{{comment.time_posted}} by <a class="text-dark">{{comment.commenter}}</a></p>
+  {{comment.content}}
+  </div>
+</div>
+<br>
+{% endfor %}
+</div>
+
+<br>
+{% endblock content %}

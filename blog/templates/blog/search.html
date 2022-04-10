@@ -1,0 +1,42 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %} - Search{% endblock title %}
+{% load bleach_tags %}
+
+{% block content %}
+<br><br><br><br>
+<div class="container">
+<form class="d-flex" method=POST action="{% url 'search' %}">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
+        {% csrf_token %}
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+      </form>
+</div>
+<div class="container">
+        <br>
+{% if searched %}
+{% if not articles %}
+        <h4 align="center">No results found</h4>
+        
+{% else %}
+<p class="fs-4" align="center">Articles containing '{{searched}}'</p>
+{% endif %}
+<hr>
+{% for article in articles %}
+<article class="blog-post">
+        <h2 class="blog-post-title fs-3">{{article.title}}</h2>
+        <p class="blog-post-meta">{{article.date_posted}} by <a class="text-dark" href="#">{{article.author}}</a></p>
+        {% if article.image %}
+        <img src="{{article.image.url}}" class="bd-placeholder-img thumbnail" width="50%" height="50%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"  alt="">
+        {% endif %}
+        <p class="fst-italic fs-6">{{article.excerpt}}</p>
+        <p class="fs-6">{{article.content|truncatewords:50|bleach}}</p>
+        <a href="{% url 'show-article' article.slug %}">Continue reading</a>
+        </article>
+<br>
+{% endfor %}
+{% else %}
+<h4 align="center">Nothing searched</h4>
+<hr>
+{% endif %}
+{% endblock content %}

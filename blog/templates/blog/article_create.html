@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block title %} - Write{% endblock title %}
+
+{% block content %}
+<br>
+<div class="container">
+	<form method=POST enctype="multipart/form-data">
+		{% csrf_token %}
+		{{form.as_p}}
+
+		<button type="submit" class="btn btn-secondary">Submit</button>
+	</form>
+</div>
+<br>
+{% endblock %}

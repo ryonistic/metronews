@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% block title %} - {{year}} {% endblock title %}
+{% load bleach_tags %}
+{% block content %}
+<br>
+<div class="container">
+        <h3 align="center">{{month}}, {{year}}</h3>
+        <br>
+        <div class="container  d-flex flex-wrap">
+{% for article in articles %}
+<article class="blog-post col-4 p-3">
+        <h2 class="blog-post-title fs-3">{{article.title}}</h2>
+        <p class="blog-post-meta">{{article.date_posted}} by <a class="text-dark" href="{% url 'profile' article.author.id %}">{{article.author}}</a></p>
+        <p class="fst-italic fs-6">{{article.excerpt}}</p>
+        <p class="fs-6">{{article.content|truncatewords:50|bleach}}</p>
+        <a href="{% url 'show-article' article.slug %}">Continue reading</a>
+        </article>
+{% endfor %}
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,27 @@
+{% extends 'blog/base.html' %}
+{% block title %} - {{person.user.first_name}} {{person.user.last_name}} {% endblock title %}
+{% block content %}
+<div class="container">
+	{% if person.image %}
+        <img src="{{person.image.url}}" class="img-fluid" alt="">
+        {% endif %}
+	<div class="d-flex" style="align-items: baseline;">
+<p class="fs-2 p-2">{{person.user.first_name}} {{person.user.last_name}}</p>
+<p class="fs-6 p-2">@{{person.user.username}}</p>
+
+</div>
+<div class="container">
+<p>Email Address: {{person.user.email}}</p>
+{% if person.user.is_writer and person.user.is_reporter %}
+<p>Writer and Reporter at MetroNews</p>
+{% endif %}
+{% if person.user.is_reporter and not person.user.is_writer %}
+<p>Reporter at MetroNews</p>
+{% endif %}
+{% if not person.user.is_reporter and person.user.is_writer %}
+<p>Writer at MetroNews</p>
+{% endif %}
+<p>Date joined: {{person.user.date_joined|date}}</p>
+</div>
+</div>
+{% endblock content %}
