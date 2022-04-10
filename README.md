@@ -6,3 +6,4 @@ Much of the front end was built using pre-written CSS from Bootstrap and major f
 This is a repository with the sole purpose of showcasing my very first Django project and how I designed the entire thing as a monolithic news website. 
 ***There is not enough documentation because this was my first project and I didn't bother documenting anything. That is an amateur way of thinking and I believe I have grown since.***
 ![Metronews - Home](https://github.com/ryonistic/metronews/blob/main/metronews_home.png?raw=true "Home Page screenshot")
+![Metronews - Home](https://github.com/ryonistic/metronews/blob/main/Home2.png?raw=true "Home Page screenshot")
