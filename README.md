@@ -10,8 +10,9 @@ The banner post as well as the two featured posts are sorted from the backend by
 Lower Half of the Home page
 Shows and stationary right sidebar and a scrollable featured posts section. These are automatically sorted from the backend and will only show up on the frontend if the posts are marked as being worthy of the front page.
 ![Metronews - Home](https://github.com/ryonistic/metronews/blob/main/Home2.png?raw=true "Home Page screenshot")
-Users can view posts by going to the archives section. They can view previously written posts sorted chornologically. The website also has search functionality for posts.
-![Metronews - Home](https://github.com/ryonistic/metronews/blob/main/archive_view.png?raw=true "Archives screenshot")
-Users may login and then comment. An account is necessary to make comments.
-![Metronews - Home](https://github.com/ryonistic/metronews/blob/main/comments_view.png?raw=true "Comments area screenshot")
+Users can view posts by going to the archives section. They can view previously written posts sorted chornologically. The website also has search functionality for posts. Users may login and then comment. An account is necessary to make comments.
+<img src="https://github.com/ryonistic/metronews/blob/main/archive_view.png?raw=true" width="450" height="auto" alt="Archives screenshot" />
+
+<img src="https://github.com/ryonistic/metronews/blob/main/comments_view.png?raw=true" width="450" height="auto" alt="Comments area screenshot" />
+
 
