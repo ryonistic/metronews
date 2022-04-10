@@ -15,7 +15,7 @@ Shows and stationary right sidebar and a scrollable featured posts section. Thes
 <div>
 <p>Users can view posts by going to the archives section. They can view previously written posts sorted chornologically. The website also has search functionality for posts. Users may login and then comment. An account is necessary to make comments.</p>
 
-<img src="https://github.com/ryonistic/metronews/blob/main/archive_view.png?raw=true" width="400" height="auto" alt="Archives screenshot" />
-<img src="https://github.com/ryonistic/metronews/blob/main/comments_view.png?raw=true" width="400" height="auto" alt="Comments area screenshot" />
+<img src="https://github.com/ryonistic/metronews/blob/main/archive_view.png?raw=true" width="450" height="300" alt="Archives screenshot" />
+<img src="https://github.com/ryonistic/metronews/blob/main/comments_view.png?raw=true" width="450" height="300" alt="Comments area screenshot" />
 </div>
 
