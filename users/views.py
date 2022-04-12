@@ -20,7 +20,7 @@ def register(request):
 				messages.success(request, 'Registration Successful')
 				return redirect('home')
 		else:
-			form = RegisterUserForm
+			form = RegisterUserForm()
 		return render(request, 'users/register.html', {'form':form})
 
 
