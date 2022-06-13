@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Genre, Article, Comment
 from .forms import ArticleForm, CommentForm
@@ -9,14 +10,17 @@ from calendar import HTMLCalendar
 
 # Create your views here.
 def home(request):
-	featured_article = Article.objects.filter(is_featured=True).order_by('-date_posted')[0]
-	india_article = Article.objects.filter(genre=2).order_by('-date_posted')[0]
-	banner_article = Article.objects.filter(is_banner=True).order_by('-date_posted')[0]
-	genres_nav = Genre.objects.all()
-	home_articles = Article.objects.filter(is_home_article=True).order_by('-date_posted')[0:5]
-	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-	years = [2022,]
-	return render(request, 'blog/home.html', {'home_articles':home_articles, 'genres_nav':genres_nav, 'months':months,'years':years, 'featured_article':featured_article,'india_article':india_article, 'banner_article':banner_article})
+	try:
+		featured_article = Article.objects.filter(is_featured=True).order_by('-date_posted')[0]
+		india_article = Article.objects.filter(genre=1).order_by('-date_posted')[0]
+		banner_article = Article.objects.filter(is_banner=True).order_by('-date_posted')[0]
+		genres_nav = Genre.objects.all()
+		home_articles = Article.objects.filter(is_home_article=True).order_by('-date_posted')[0:5]
+		months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+		years = [2022,]
+		return render(request, 'blog/home.html', {'home_articles':home_articles, 'genres_nav':genres_nav, 'months':months,'years':years, 'featured_article':featured_article,'india_article':india_article, 'banner_article':banner_article})
+	except Exception:
+		return HttpResponse('Go to admin panel and add some articles. Make sure you have a superuser.')
 
 def about(request):
 	genres_nav = Genre.objects.all()
